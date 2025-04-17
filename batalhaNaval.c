@@ -16,10 +16,14 @@ int main() {
     int tabuleiro[10][10] = {0}; 
 
     // Coordenadas iniciais dos navios
-    int navioHorizontalLinha = 5; // Linha inicial do navio horizontal
-    int navioHorizontalColuna = 6; // Coluna inicial do navio horizontal
-    int navioVerticalLinha = 5; // Linha inicial do navio vertical
-    int navioVerticalColuna = 4; // Coluna inicial do navio vertical
+    int navioHorizontalLinha = 1; // Linha inicial do navio horizontal
+    int navioHorizontalColuna = 1; // Coluna inicial do navio horizontal
+    int navioVerticalLinha = 5;    // Linha inicial do navio vertical
+    int navioVerticalColuna = 5;   // Coluna inicial do navio vertical
+    int navioDiagonal1Linha = 0;   // Linha inicial do navio diagonal 1
+    int navioDiagonal1Coluna = 0;  // Coluna inicial do navio diagonal 1
+    int navioDiagonal2Linha = 7;   // Linha inicial do navio diagonal 2
+    int navioDiagonal2Coluna = 7;  // Coluna inicial do navio diagonal 2
 
     // Posiciona o navio horizontal com validação
     if (navioHorizontalColuna + tamanhoNavio <= colunasTabuleiro) {
@@ -37,6 +41,26 @@ int main() {
         }
     } else {
         printf("Erro: Navio vertical fora dos limites do tabuleiro.\n");
+    }
+
+    // Posiciona o navio diagonal 1 com validação
+    if (navioDiagonal1Linha + tamanhoNavio <= linhasTabuleiro &&
+        navioDiagonal1Coluna + tamanhoNavio <= colunasTabuleiro) {
+        for (int diagonal = 0; diagonal < tamanhoNavio; diagonal++) {
+            tabuleiro[navioDiagonal1Linha + diagonal][navioDiagonal1Coluna + diagonal] = 3;
+        }
+    } else {
+        printf("Erro: Navio diagonal 1 fora dos limites do tabuleiro.\n");
+    }
+
+    // Posiciona o navio diagonal 2 com validação
+    if (navioDiagonal2Linha - tamanhoNavio + 1 >= 0 &&
+        navioDiagonal2Coluna - tamanhoNavio + 1 >= 0) {
+        for (int diagonal = 0; diagonal < tamanhoNavio; diagonal++) {
+            tabuleiro[navioDiagonal2Linha - diagonal][navioDiagonal2Coluna - diagonal] = 3;
+        }
+    } else {
+        printf("Erro: Navio diagonal 2 fora dos limites do tabuleiro.\n");
     }
 
     // Exibe o tabuleiro no console com os números das linhas e letras das colunas
